@@ -2,12 +2,12 @@
 chrome.system.network.getNetworkInterfaces( function(interfaces){
   
   for ( var i = 0 ; i < interfaces.length; i++){
+    
     if ( interfaces[i].prefixLength === 24){ // only print the IP4 address
       document.getElementById("list").innerText = interfaces[i].address;
     }
-    console.log(interfaces[i]);  
+    //console.log(interfaces[i]);  
   }
-  
 });
 
 var udpPort = new osc.UDPPort({
@@ -20,7 +20,7 @@ udpPort.on("open", function () {
 });
 
 udpPort.on("message", function(message){
-  document.getElementById("message").innerText = message.address + "   " + message.args;
+  document.getElementById("message").innerText = message.address + "<br \>" + message.args;
 });
 
 udpPort.on("error", function (err) {
